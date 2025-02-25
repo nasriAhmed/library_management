@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tableau de Bord - Logs</title>
+    <script>
+        async function fetchLogs() {
+            try {
+                const response = await fetch('/dashboard/logs'); 
+                const data = await response.json();
+                
+                if (data.logs && data.logs.length > 0) {
+                    document.getElementById("log-container").innerHTML = data.logs.join("<br>");
+                } else {
+                    document.getElementById("log-container").innerHTML = "Aucun log disponible.";
+                }
+            } catch (error) {
+                console.error("Erreur lors du chargement des logs :", error);
+            }
+        }
+        setInterval(fetchLogs, 5000);
+    </script>
+</head>
+<body onload="fetchLogs()">
+    <h1>Tableau de Bord - Logs en Temps Réel</h1>
+    <div id="log-container" style="white-space: pre-wrap; border: 1px solid #ddd; padding: 10px;"></div>
+</body>
+</html>
