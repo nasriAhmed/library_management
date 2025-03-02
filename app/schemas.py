@@ -1,6 +1,5 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, conint
 from typing import Optional
-
 
 class UserSchema(BaseModel):
     """
@@ -25,7 +24,7 @@ class BookSchema(BaseModel):
     """
     titre: str
     auteur_id: str
-    stock: int
+    stock: conint(ge=0)  # 🔥 Stock doit être >= 0 (évite les valeurs négatives)
 
 
 class BorrowSchema(BaseModel):

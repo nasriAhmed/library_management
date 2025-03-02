@@ -24,3 +24,4 @@ def setup_logger():
 
 
 logger = setup_logger()
+logger.info("Logger initialisé")  # pragma: no cover
